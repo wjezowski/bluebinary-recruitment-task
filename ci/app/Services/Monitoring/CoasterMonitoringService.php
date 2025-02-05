@@ -68,27 +68,27 @@ final class CoasterMonitoringService
 
     private function prepareCoasterIdLine(string $coasterId): string
     {
-        return "0. Id kolejki: $coasterId\n";
+        return "0. Id kolejki: $coasterId";
     }
 
     private function prepareWorkingHoursLine(\DateTime $fromHours, \DateTime $toHours): string
     {
-        return "1. Godziny działania: {$fromHours->format('H:i')} - {$toHours->format('H:i')}\n";
+        return "1. Godziny działania: {$fromHours->format('H:i')} - {$toHours->format('H:i')}";
     }
 
     private function prepareNumberOfWagonsLine(int $realNumberOfWagons, int|string $requiredNumberOfWagons): string
     {
-        return "2. Liczba wagonów: $realNumberOfWagons/$requiredNumberOfWagons\n";
+        return "2. Liczba wagonów: $realNumberOfWagons/$requiredNumberOfWagons";
     }
 
     private function prepareNumberOfWorkersLine(int $realNumberOfWorkers, int|string $requiredNumberOfWorkers): string
     {
-        return "3. Dostępny personel: $realNumberOfWorkers/$requiredNumberOfWorkers\n";
+        return "3. Dostępny personel: $realNumberOfWorkers/$requiredNumberOfWorkers";
     }
 
     private function prepareNumberOfClientsLine(int $wantedNumberOfClients, int|string $maxNumberOfClients): string
     {
-        return "4. Klienci dziennie: $wantedNumberOfClients/$maxNumberOfClients\n";
+        return "4. Klienci dziennie: $wantedNumberOfClients/$maxNumberOfClients";
     }
 
     private function prepareStatusLine(array $problems): string
@@ -97,7 +97,7 @@ final class CoasterMonitoringService
             empty($problems)
                 ? "Status: OK"
                 : ("Problem: " . implode('; ', $problems) . '.')
-            ) . "\n\n";
+            ) . "\n";
     }
 
     /**
@@ -127,6 +127,8 @@ final class CoasterMonitoringService
             $this->checkNumberOfWorkersProblem($results, $coasterDto);
         } catch (CoasterProblemException $exception) {
             $problems[] = $exception->getMessage();
+
+            \log_message('warning', $exception->getMessage());
         }
 
         return $problems;
