@@ -50,3 +50,11 @@ POST https://bluebinary.localhost/api/coasters/:coasterId/wagons
 
 DELETE https://bluebinary.localhost/api/coasters/:coasterId/wagons/:wagonId
 
+## Dodatkowe notki
+
+Na potrzeby tego zadania rekrutacyjnego nie tworzyłem i nie skupiałem się na walidacji danych wejściowych. 
+
+Nie do końca zrozumiałem o co dokładnie chodziło poprzez "Niedostępna dla osób z zewnątrz" dla wersji deweloperskiej.
+Wierzę, że połączenie poprzez bluebinary.localhost rozwiązuje sprawę.
+
+Produkcyjna konfiguracja oczywiście jest symboliczna.
