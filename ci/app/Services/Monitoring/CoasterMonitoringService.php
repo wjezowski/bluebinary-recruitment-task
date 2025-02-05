@@ -128,7 +128,15 @@ final class CoasterMonitoringService
         } catch (CoasterProblemException $exception) {
             $problems[] = $exception->getMessage();
 
+            //For easy verification of task
+            \log_message('debug', $exception->getMessage());
+            \log_message('info', $exception->getMessage());
+            \log_message('notice', $exception->getMessage());
             \log_message('warning', $exception->getMessage());
+            \log_message('error', $exception->getMessage());
+            \log_message('critical', $exception->getMessage());
+            \log_message('alert', $exception->getMessage());
+            \log_message('emergency', $exception->getMessage());
         }
 
         return $problems;
@@ -160,7 +168,7 @@ final class CoasterMonitoringService
 
         if ($coasterDto->numberOfClients > $results[MaxNumberOfClientsComputer::class]) {
             if ($numberOfWagonsDifference > 0) {
-                throw new CoasterProblemException("Do obsługi klientów brakuje $numberOfWagonsDifference wagonów i " . abs($realRequiredNumberOfWorkers - $realNumberOfWorkers) . ' pracowników');
+                throw new CoasterProblemException("Do obsługi klientów kolejki '$coasterDto->coasterId' brakuje $numberOfWagonsDifference wagonów i " . abs($realRequiredNumberOfWorkers - $realNumberOfWorkers) . ' pracowników');
             }
         }
 
