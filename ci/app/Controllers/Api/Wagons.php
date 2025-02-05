@@ -6,16 +6,16 @@ namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
 use App\Dto\WagonDto;
-use App\Models\Wagons\WagonsModel;
+use App\Services\Monitoring\Model\MonitoringWagonsModelAdapter;
 use CodeIgniter\HTTP\ResponseInterface;
 
 final class Wagons extends BaseController
 {
-    private WagonsModel $wagonsModel;
+    private MonitoringWagonsModelAdapter $wagonsModel;
 
     public function __construct()
     {
-        $this->wagonsModel = model(WagonsModel::class);
+        $this->wagonsModel = model(MonitoringWagonsModelAdapter::class);
     }
 
     public function post(string $coasterId): ResponseInterface

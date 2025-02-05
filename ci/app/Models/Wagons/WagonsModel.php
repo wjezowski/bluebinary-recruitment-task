@@ -8,9 +8,9 @@ use App\Dto\WagonDto;
 use App\Libraries\ClueRedisClient\RedisClientFactory;
 use Clue\React\Redis\RedisClient;
 
-final readonly class WagonsModel
+readonly class WagonsModel
 {
-    private RedisClient $redisClient;
+    protected RedisClient $redisClient;
 
     public function __construct()
     {
@@ -19,11 +19,11 @@ final readonly class WagonsModel
 
     public function saveWagon(WagonDto $wagonDto): void
     {
-        $this->redisClient->set("$wagonDto->coasterId:$wagonDto->wagonId", serialize($wagonDto));
+        $this->redisClient->set("c:$wagonDto->coasterId:$wagonDto->wagonId", serialize($wagonDto));
     }
 
     public function deleteWagon(string $coasterId, string $wagonId): void
     {
-        $this->redisClient->del("$coasterId:$wagonId");
+        $this->redisClient->del("c:$coasterId:$wagonId");
     }
 }

@@ -8,9 +8,9 @@ use App\Dto\CoasterDto;
 use App\Libraries\ClueRedisClient\RedisClientFactory;
 use Clue\React\Redis\RedisClient;
 
-final readonly class CoastersModel
+readonly class CoastersModel
 {
-    private RedisClient $redisClient;
+    protected RedisClient $redisClient;
 
     public function __construct()
     {
@@ -19,6 +19,6 @@ final readonly class CoastersModel
 
     public function saveCoaster(CoasterDto $coasterDto): void
     {
-        $this->redisClient->set($coasterDto->coasterId, serialize($coasterDto));
+        $this->redisClient->set("c:$coasterDto->coasterId", serialize($coasterDto));
     }
 }

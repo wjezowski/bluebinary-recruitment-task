@@ -6,7 +6,7 @@ namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
 use App\Dto\CoasterDto;
-use App\Models\Coasters\CoastersModel;
+use App\Services\Monitoring\Model\MonitoringCoastersModelAdapter;
 use CodeIgniter\HTTP\ResponseInterface;
 
 final class Coasters extends BaseController
@@ -46,8 +46,8 @@ final class Coasters extends BaseController
 
     private function handleCoasterDto(CoasterDto $coasterDto): ResponseInterface
     {
-        /** @var CoastersModel $coastersModel */
-        $coastersModel = model(CoastersModel::class);
+        /** @var MonitoringCoastersModelAdapter $coastersModel */
+        $coastersModel = model(MonitoringCoastersModelAdapter::class);
 
         try {
             $coastersModel->saveCoaster($coasterDto);
