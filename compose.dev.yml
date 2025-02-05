@@ -8,6 +8,7 @@ services:
   php:
     volumes:
       - /var/www/html/vendor
+      - /var/www/html/writable
       - './ci:/var/www/html'
 
   redis:

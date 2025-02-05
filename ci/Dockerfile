@@ -14,3 +14,5 @@ FROM builder AS final
 COPY ./ /var/www/html/
 
 RUN composer install
+
+RUN chmod -R 777 /var/www/html/writable
