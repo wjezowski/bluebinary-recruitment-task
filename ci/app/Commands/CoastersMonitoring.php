@@ -66,7 +66,7 @@ final class CoastersMonitoring extends BaseCommand
         CLI::clearScreen();
 
         foreach ($coasters as $coasterDto) {
-            $this->renderMonitoring($this->coasterMonitoringService->monitor($coasterDto, $wagons[$coasterDto->coasterId]));
+            $this->renderMonitoring($this->coasterMonitoringService->monitor($coasterDto, $wagons[$coasterDto->coasterId] ?? []));
         }
     }
 
@@ -75,5 +75,7 @@ final class CoastersMonitoring extends BaseCommand
         foreach ($lines as $line) {
             CLI::write($line);
         }
+
+        CLI::newLine();
     }
 }
