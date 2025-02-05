@@ -1,0 +1,38 @@
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    networks:
+      - frontend
+    ports:
+      - "80:80"
+      - "443:443"
+
+  php:
+    build:
+      context: ./ci
+      dockerfile: ./Dockerfile
+    networks:
+      - frontend
+      - backend
+    expose:
+      - "9000"
+
+  redis:
+    image: redis:8.0-M03-alpine
+    networks:
+      - backend
+    expose:
+      - "6379"
+    command:
+      - /bin/sh
+      - -c
+      - redis-server --requirepass "${REDIS_PASSWORD:?REDIS_PASSWORD variable is not set}"
+
+
+networks:
+  frontend:
+    driver: bridge
+
+  backend:
+    driver: bridge
+    internal: true

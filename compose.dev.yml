@@ -1,0 +1,26 @@
+services:
+  nginx:
+    volumes:
+      - ./nginx/nginx.dev.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl/localhost.crt:/etc/ssl/certs/localhost.crt
+      - ./nginx/ssl/localhost.key:/etc/ssl/private/localhost.key
+
+  php:
+    volumes:
+      - './ci:/var/www/html'
+
+  redis:
+    ports:
+      - "6379:6379"
+    volumes:
+      - "redis_dev:/data"
+
+volumes:
+  redis_dev:
+
+
+networks:
+  frontend:
+    internal: false
+  backend:
+    internal: false

@@ -1,0 +1,7 @@
+services:
+  redis:
+    volumes:
+      - "redis_prod:/data"
+
+volumes:
+  redis_prod:
