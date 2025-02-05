@@ -14,6 +14,10 @@ services:
     networks:
       - frontend
       - backend
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
     expose:
       - "9000"
 
