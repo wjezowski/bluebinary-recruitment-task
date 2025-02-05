@@ -10,6 +10,6 @@ final class RedisClientFactory
 {
     public static function getInstance(): RedisClient
     {
-        return new RedisClient('redis://:' . env('REDIS_PASSWORD') . '@' . env('REDIS_HOST') . ':' . env('REDIS_PORT') . '?timeout=1');
+        return new RedisClient('redis://:' . getenv('REDIS_PASSWORD') . '@' . getenv('REDIS_HOST') . ':' . getenv('REDIS_PORT') . '?timeout=1');
     }
 }
