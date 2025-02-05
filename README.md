@@ -1,5 +1,7 @@
 ## Instalacja
 
+`cp .env.example .env`
+
 `docker compose build`
 
 `docker compose -f compose.yml -f compose.dev.yml up -d`
