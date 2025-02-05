@@ -1,0 +1,29 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Models\Wagons;
+
+use App\Dto\WagonDto;
+use App\Libraries\ClueRedisClient\RedisClientFactory;
+use Clue\React\Redis\RedisClient;
+
+final readonly class WagonsModel
+{
+    private RedisClient $redisClient;
+
+    public function __construct()
+    {
+        $this->redisClient = RedisClientFactory::getInstance();
+    }
+
+    public function saveWagon(WagonDto $wagonDto): void
+    {
+        $this->redisClient->set("$wagonDto->coasterId:$wagonDto->wagonId", serialize($wagonDto));
+    }
+
+    public function deleteWagon(string $coasterId, string $wagonId): void
+    {
+        $this->redisClient->del("$coasterId:$wagonId");
+    }
+}
